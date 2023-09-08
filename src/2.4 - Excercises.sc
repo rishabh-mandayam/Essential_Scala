@@ -64,4 +64,13 @@ object argh {
 
 argh.c + argh.b + argh.a
 
+object person {
+  val firstName = "Rishabh"
+  val lastName = "Mandayam"
+}
 
+object alien {
+  def greet(p: person.type): String = {
+    "Greetings, " + p.firstName + " " + p.lastName
+  }
+}
