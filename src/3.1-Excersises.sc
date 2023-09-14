@@ -25,6 +25,12 @@ class Director(f: String, l: String, year: Int) {
   def name(): String = {
     firstName + " " + lastName
   }
+  
+  def copy(f: String = this.firstName,
+           l: String = this.lastName,
+           year: Int = this.yearOfBirth): Director = {
+    new Director(f, l, year)
+	} 
 }
 
 class Film(n: String, year: Int, imdb: Double, direct: Director) {
@@ -40,6 +46,14 @@ class Film(n: String, year: Int, imdb: Double, direct: Director) {
   def isDirectedBy(inputDirector: Director): Boolean =  {
     director.name().equals(inputDirector.name())
   }
+  
+  def copy(n: String = this.name, 
+	   year: Int = this.yearOfRelease, 
+	   imdb: Double = this.imdbRating,
+	   direct: Director = this.director): Film =  {
+    new Film(n, year, imdb, direct)
+  }
+
 }
 
 val eastwood = new Director("Clint", "Eastwood", 1930)
@@ -62,3 +76,46 @@ val huntForRedOctober = new Film("The Hunt for Red October", 1990,
   7.6, mcTiernan)
 val thomasCrownAffair = new Film("The Thomas Crown Affair", 1999, 6.8,
   mcTiernan)
+
+
+eastwood.yearOfBirth
+// res16: Int = 1930
+dieHard.director.name()
+// res17: String = John McTiernan
+invictus.isDirectedBy(nolan)
+// res18: Boolean = false
+
+class Counter(initialCount: Int) {
+	val count = initialCount
+	
+	def inc(): Counter = {
+		new Counter(this.count + 1)
+	}
+	
+	def dec(): Counter = {
+		new Counter(this.count - 1)
+	}
+}
+
+
+class newCounter(initialCount: Int) {
+	val count = initialCount
+	
+	def inc(x: Int = 1): Counter = {
+		new Counter(this.count + x)
+	}
+	
+	def dec(x: Int = 1): Counter = {
+		new Counter(this.count - x)
+	}
+
+    def adjust(adder: Adder) = {
+      new Counter(adder.add(count))
+    }
+}
+
+class Adder(amount: Int) {
+  def add(in: Int) = in + amount
+}
+
+
