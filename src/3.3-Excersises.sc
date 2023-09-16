@@ -64,3 +64,12 @@ class Film(n: String, year: Int, imdb: Double, direct: Director) {
   }
 }
 
+object Film {
+  def apply(n: String, year: Int, imdb: Double, director: Director): Film = {
+    new Film(n, year, imdb, director)
+  }
+
+  def highestRating(filmOne: Film, filmTwo: Film): Film = {
+    if (filmOne.imdbRating > filmTwo.imdbRating) filmOne else filmTwo
+  }
+}
